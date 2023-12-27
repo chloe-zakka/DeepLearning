@@ -5,6 +5,8 @@ from keras.datasets import mnist
 
 # Loading the MNIST dataset in Keras
 
+#Lets test the data
+
 # training data
 print(train_images.shape)
 print(len(train_labels))
