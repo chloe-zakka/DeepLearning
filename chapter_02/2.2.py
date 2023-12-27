@@ -75,4 +75,3 @@ my_slice = train_images[10:100, 0:28, 0:28]
         # batch = train_images[128:256]
 
 
-
