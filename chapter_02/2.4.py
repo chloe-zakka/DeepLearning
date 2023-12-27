@@ -9,6 +9,7 @@ import keras
 # Take advantage of the fact that all operations used in the network are differentiable
 # The gradient function is finding the points for which the loss function is minimal --> where its derivative is 0
 
+
 # Use four-step algorithm:
 # 1- Draw a batch of training samples x and corresponding targets y
 # 2- Run the network on x to obtain predictions y_pred
