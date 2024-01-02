@@ -118,7 +118,8 @@ plt.legend()
 plt.show()
 
 # Plotting the training and validation accuracy
-plt.clf()                                      ❶
+
+plt.clf()
 acc = history_dict['acc']
 val_acc = history_dict['val_acc']
 
