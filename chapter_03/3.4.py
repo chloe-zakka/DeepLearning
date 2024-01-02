@@ -1,5 +1,4 @@
 # Binary classification is the most widely applied kind of machine-learning problem.
-
 # You should never test a machine-learning model on the same data that you used to train it!
 from keras.datasets import imdb
 (train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=10000)
