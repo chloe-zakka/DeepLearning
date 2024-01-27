@@ -111,4 +111,29 @@ print(test_acc)
 
 # Understanding strides:
 # Stride is the distance between two successive windows. By default, it's 1.
-# It's possible to have strides greater than 1,
+# It's possible to have strides greater than 1. This can be a problem:
+# Filter moves two pixels over (instead of one) each time it scans the image. This results in an output feature map
+# that is half the width and half the height of the original image. So, the image gets smaller.
+# Strided convolutions rarely ever used
+
+# To downsample feature maps, use max-pooling instead of strides.
+# Max-pooling: Aggressively downsample feature maps by transforming extracted input them via hardcoded max tensor ops.
+# Done w 2x2 windows and a stride of 2
+
+# Why max-pooling? What's the point? Let's see!
+# No max-pooling:
+model_no_max_pool = models.Sequential()
+model_no_max_pool.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28,28,1)))
+model_no_max_pool.add(layers.Conv2D(64, (3, 3), activation='relu'))
+model_no_max_pool.add(layers.Conv2D(64, (3, 3), activation='relu'))
+print(model_no_max_pool.summary())
+
+# What's wrong with this set up?
+# 1. Using only small windows (like 3x3) in convolutional layers limits the network's ability to learn complex,
+# high-level patterns, as it restricts the view to very small portions of the input, making it challenging to recognize
+# larger structures like digits
+# 2. The final feature map has 22 × 22 × 64 = 30,976 total coefficients per sample. This is huge. Will overfit.
+
+# What's the point of downsampling?
+# In short, the reason to use downsampling is to reduce the number of feature-map coefficients to process, as well as
+# to induce spatial-filter hierarchies by making successive convolution layers look at increasingly large windows
